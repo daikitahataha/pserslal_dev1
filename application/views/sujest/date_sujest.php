@@ -26,11 +26,37 @@
           for(let i = 0; i < photo_length ;i++){
             photos += '<li class="gallery-item"><img src="' + gallery_data[i].media_url + '"></li>';
           }
+
           document.querySelector("#gallery").innerHTML = photos;
       }).catch(error=>{
         console.log(error);
       })
 
+    </script>
+
+    <script type="text/javascript" defer>
+      $(function(){
+        $('#send').on('click', function(){
+          $.ajax({
+            type: 'post',
+            url: '<?= base_url('user/Sujest/sujest'); ?>',
+            data: instagram_data,
+            dataType: 'json',
+
+            //リクエスト成功時
+            success: function(data){
+              const gallery_data = instagram_data["business_discovery"]["media"]["data"];
+              let photos = "";
+              const photo_length = 9;
+
+              for(let i = 0; i < photo_length ;i++){
+                photos += '<li class="gallery-item"><img src="' + gallery_data[i].media_url + '"></li>';
+              }
+              $("#gallery").append(photos);
+            }
+          });
+        });
+      });
     </script>
   </body>
 </html>

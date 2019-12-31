@@ -25,8 +25,8 @@ class Sujest extends User_abstract {
 				//バリデーションを通過したらInstagram APIの投稿データを表示するためのajaxコードに渡すデータを記述
 				$instagram_business_id = '17841421524292277';
 				$access_token = 'EAAJFEyaM5dwBABPlUKXaMVGv2u7ITHyorcRNc3qxZA5LrRH8HHrXs0UO2A2s6ZBaDyYjaxggHXbcZBMLkMhi8qNFS8lAFxRGqou3FelFscd7g6g3FUpw0EchrqHBXSSpbqYY7hM8E7E2T9MWdJBUCAzatS2HS6CeMp9ThA2HVVZCduv7WX4J';
-				$target_user = 'd.s_0528';
-				$query = 'name,media{caption,like_count,media_url,permalink,timestamp,username}&access_token='.$access_token;
+				$target_user = 'well_asakusa_cafe';
+				$query = 'business_discovery.username('.$target_user.'){id,followers_count,media_count,ig_id,media{caption,media_url,media_type,like_count,comments_count,timestamp,id}}';
 				$instagram_api_url = 'https://graph.facebook.com/v5.0/';
 				$target_url = $instagram_api_url.$instagram_business_id."?fields=".$query."&access_token=".$access_token;
 
@@ -37,9 +37,12 @@ class Sujest extends User_abstract {
 				$instagram_data = curl_exec($ch);
 				curl_close($ch);
 
-				echo $instagram_data;
+				$instagram_data = mb_convert_encoding($instagram_data, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
 
-				$this->load->view('sujest/date_sujest');
+				$instagram_data_arr = json_encode($instagram_data, true);
+
+				echo $instagram_data_arr;
+				exit;
 		}
 		else
 		{
