@@ -28,21 +28,23 @@
       $(function(){
         $('#send').on('click', function(){
           $.ajax({
-            type: 'get',
+            type: 'post',
             url: '<?= base_url('user/Sujest/sujest'); ?>',
             data: null,
-            dataType: 'json',
+            //dataType: 'json',
           }).done(function(instagram_data){
-            const gallery_data = instagram_data["business_discovery"]['media']['data'];
-            console.log(gallery_data);
-            let photos = "";
-            const photo_length = 9;
-console.log(instagram_data)
-            for(let i = 0; i < photo_length ;i++){
+            console.log('通信成功');
+            const gallery_data = instagram_data["business_discovery"]['media'];
 
-              photos += '<li class="gallery-item"><img src="' + gallery_data[i].media_url + '"></li>';
-            }
-            $("#gallery").append(photos);
+
+            //let photos = "";
+            //onst photo_length = 9;
+
+            //for(let i = 0; i < photo_length ;i++){
+
+              //photos += '<li class="gallery-item"><img src="' + gallery_data[i].media_url + '"></li>';
+            //}
+            //$("#gallery").append(photos);
           }).fail(function (jqXHR, textStatus, errorThrown) {
                     // 通信失敗時の処理
                     alert('ファイルの取得に失敗しました。');

@@ -37,11 +37,7 @@ class Sujest extends User_abstract {
 				$instagram_data = curl_exec($ch);
 				curl_close($ch);
 
-				$instagram_data = mb_convert_encoding($instagram_data, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
-
-				$instagram_data_arr = json_encode($instagram_data, true);
-
-				echo $instagram_data_arr;
+				echo $instagram_data;
 				exit;
 		}
 		else
