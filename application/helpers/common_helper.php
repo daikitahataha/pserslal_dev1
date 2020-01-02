@@ -11,7 +11,7 @@ function dd($param){
   exit;
 }
 
-function isJson($string) {
+function is_json($string) {
     return ((is_string($string) &&
             (is_object(json_decode($string)) ||
             is_array(json_decode($string))))) ? true : false;

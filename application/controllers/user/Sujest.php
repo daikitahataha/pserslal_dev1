@@ -36,8 +36,9 @@ class Sujest extends User_abstract {
 
 				$instagram_data = curl_exec($ch);
 				curl_close($ch);
-
+dd($instagram_data);
 				echo $instagram_data;
+
 				exit;
 		}
 		else

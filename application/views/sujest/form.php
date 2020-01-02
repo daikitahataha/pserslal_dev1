@@ -36,15 +36,14 @@
             console.log('通信成功');
             const gallery_data = instagram_data["business_discovery"]['media'];
 
+            let photos = "";
+            onst photo_length = 9;
 
-            //let photos = "";
-            //onst photo_length = 9;
+            for(let i = 0; i < photo_length ;i++){
 
-            //for(let i = 0; i < photo_length ;i++){
-
-              //photos += '<li class="gallery-item"><img src="' + gallery_data[i].media_url + '"></li>';
-            //}
-            //$("#gallery").append(photos);
+              photos += '<li class="gallery-item"><img src="' + gallery_data[i].media_url + '"></li>';
+            }
+            $("#gallery").append(photos);
           }).fail(function (jqXHR, textStatus, errorThrown) {
                     // 通信失敗時の処理
                     alert('ファイルの取得に失敗しました。');
